@@ -10,7 +10,7 @@ Although other tools such as Tensorboard have far more bells and whistles, with 
 
 ### Keras example
 
-#### Define model:
+#### Example model:
 
 ```python
 # Official Tensorflow "Hello, world" example:
@@ -24,7 +24,7 @@ model = tf.keras.models.Sequential(
 )
 ```
 
-#### Write SVG to file:
+**Write SVG to file:**
 
 ```python
 import tfdeepviz
@@ -32,7 +32,7 @@ import tfdeepviz
 tfdeepviz.to_svg(model, 'out.svg')
 ```
 
-#### Display SVG in Jupyter Lab:
+OR **Display SVG directly in Jupyter Lab:**
 
 At the end of a cell:
 
@@ -48,9 +48,24 @@ from IPython.display import display
 display(tfdeepviz.to_digraph(model))
 ```
 
-#### Output:
+**Output |** Hello World (minimal):
 
-![Hello world SVG](./doc/hello-world.svg)
+<img src="./doc/hello-world-minimal.svg" width="15%" alt="Hello world SVG (minimal)">
+
+### Additional render options
+
+Additional rendering options can be specified by passing a `tfdeepviz.RenderOptions(...)` object.
+
+For example, `tf-deepviz` does a little bit of graph filtering to remove extraneously noisy nodes from the internal Tensorflow operation graph representation, but it can be useful to see the full, unadulterated operation graph by disabling "minimal" mode:
+
+```python
+options = tfdeepviz.RenderOptions(minimal=False)
+tfdeepviz.to_digraph(model, options=options)
+```
+
+**Output |** Hello World (non-minimal):
+
+<img src="./doc/hello-world.svg" width="80%" alt="Hello world SVG (non-minimal)">
 
 ## Features
 
